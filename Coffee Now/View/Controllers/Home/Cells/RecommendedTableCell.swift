@@ -22,7 +22,7 @@ class RecommendedTableCell: UITableViewCell {
 
         return collectionV
     }()
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setCollection()
@@ -48,8 +48,11 @@ class RecommendedTableCell: UITableViewCell {
         
     }
     
-    var recommendedData = [RecommendedCollectionViewData(contentImg: UIImage(named: "coffee"), contentIcon: UIImage(named: "love"), contentLabel: "Macchiato Short", coffeePrice: "$5.00", basketImage: UIImage(named: "basket")),
+    var recommendedData = [
+        RecommendedCollectionViewData(contentImg: UIImage(named: "coffee"), contentIcon: UIImage(named: "love"), contentLabel: "Macchiato Short", coffeePrice: "$5.00", basketImage: UIImage(named: "basket")),
         RecommendedCollectionViewData(contentImg: UIImage(named: "coffee2"), contentIcon: UIImage(named: "love"), contentLabel: "Macchiato Short", coffeePrice: "$5.00", basketImage: UIImage(named: "basket")),
+        RecommendedCollectionViewData(contentImg: UIImage(named: "coffee2"), contentIcon: UIImage(named: "love"), contentLabel: "Macchiato Short", coffeePrice: "$5.00", basketImage: UIImage(named: "basket")),
+        RecommendedCollectionViewData(contentImg: UIImage(named: "coffee"), contentIcon: UIImage(named: "love"), contentLabel: "Macchiato Short", coffeePrice: "$5.00", basketImage: UIImage(named: "basket")),
         RecommendedCollectionViewData(contentImg: UIImage(named: "coffee2"), contentIcon: UIImage(named: "love"), contentLabel: "Macchiato Short", coffeePrice: "$5.00", basketImage: UIImage(named: "basket"))
     ]
 }
@@ -63,6 +66,7 @@ extension RecommendedTableCell: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendedCollectionCell", for: indexPath) as! RecommendedCollectionCell
         cell.updateCell(data: recommendedData[indexPath.row])
+
         cell.isUserInteractionEnabled = true
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 10
@@ -75,4 +79,7 @@ extension RecommendedTableCell: UICollectionViewDelegate, UICollectionViewDataSo
         return CGSize(width: width, height: 220)
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }

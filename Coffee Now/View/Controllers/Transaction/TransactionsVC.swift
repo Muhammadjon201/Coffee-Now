@@ -19,6 +19,7 @@ class TransactionsVC: UIViewController {
         super.viewDidLoad()
         tableViewSetup()
         navigationBarSetUp()
+        self.navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
     func tableViewSetup(){

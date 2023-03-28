@@ -11,13 +11,11 @@ public let windowHeight = UIScreen.main.bounds.height
 public let windowWidth =  UIScreen.main.bounds.width
 public let windowStatusBarHeight = UIApplication.shared.statusBarFrame.height
 
-
 enum LoginHeaferType {
     case login
     case register
     case addressSetup
     case forgotPassword
-    
     
     var title: String? {
         switch self {

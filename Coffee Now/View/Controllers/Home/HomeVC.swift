@@ -199,5 +199,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = HomeCollectionDetailVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

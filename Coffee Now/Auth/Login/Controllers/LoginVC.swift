@@ -90,7 +90,7 @@ extension LoginVC: UITableViewDataSource, UITableViewDelegate {
             }
             
             cell.selectionStyle = .none
-            cell.backgroundColor = .clear
+            cell.backgroundColor = .red
             
             return cell
             

@@ -50,11 +50,12 @@ class RecommendedCollectionCell: UICollectionViewCell {
         return basketIcon
     }()
     
+    //var didSelectImage: (() -> Void?)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

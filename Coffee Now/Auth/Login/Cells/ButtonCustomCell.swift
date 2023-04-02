@@ -7,15 +7,27 @@
 
 import UIKit
 
-class ButtonCustomCell: UITableViewCell {
+protocol ButtonCustomCellDelegate: AnyObject {
+    func loginBtnTapped()
+    func registerBtnTapped()
+    func addAddressBtn()
+    func bottomRegister()
+    func bottomLogin()
+}
 
+class ButtonCustomCell: UITableViewCell {
+    
+    weak var delegate: ButtonCustomCellDelegate?
+    
     var mainView = UIView()
     
     var actionBtn = UIButton(type: .system)
     
     var skipAccountLabel = UILabel()
     
-    var registerBtn = UIButton()
+    var registerBtn = UIButton(type: .system)
+    
+    var bottomRegisterTap: ((Bool) -> Void)?
   
     func initViews(frame: CGRect, type: BtnType){
         
@@ -31,24 +43,42 @@ class ButtonCustomCell: UITableViewCell {
         actionBtn.backgroundColor = .brown
         actionBtn.addTarget(self, action: #selector(actionBtnTapped), for: .touchUpInside)
         mainView.addSubview(actionBtn)
-        
-        skipAccountLabel.frame = CGRect(x: 20, y: actionBtn.frame.maxY + 13, width: mainView.frame.width, height: 21)
+
         skipAccountLabel.numberOfLines = 0
         skipAccountLabel.textAlignment = .left
         skipAccountLabel.text = "\(type.registerSkipLabel)"
+        skipAccountLabel.textAlignment = .center
         skipAccountLabel.textColor = .systemGray
         mainView.addSubview(skipAccountLabel)
-        
-        registerBtn.frame = CGRect(x: skipAccountLabel.frame.maxY, y: actionBtn.frame.maxY + 13, width: mainView.frame.width, height: 21)
-        registerBtn.setTitle("Register", for: .normal)
+        skipAccountLabel.snp.makeConstraints { make in
+            make.top.equalTo(actionBtn.snp.bottom).offset(19)
+            make.left.equalTo(73)
+        }
+ 
+        registerBtn.setTitle("\(type.bottomRegisterBtn)", for: .normal)
         registerBtn.setTitleColor(UIColor.orange, for: .normal)
+        registerBtn.addTarget(self, action: #selector(registerBtnTapped), for: .touchUpInside)
         mainView.addSubview(registerBtn)
+        registerBtn.snp.makeConstraints { make in
+            make.centerY.equalTo(skipAccountLabel)
+            make.left.equalTo(skipAccountLabel.snp.right).offset(10)
+        }
     }
-    
+
     // These are Login, register buttons to enter HomeVC..
     @objc func actionBtnTapped(){
-        print("bosildi")
-        
+        delegate?.loginBtnTapped()
+        delegate?.registerBtnTapped()
+        delegate?.addAddressBtn()
+        print("actinBtn")
     }
     
+    @objc func registerBtnTapped(_ sender: UIButton){
+        print("register ishladi")
+        delegate?.bottomRegister()
+        delegate?.bottomLogin()
+        if let pressed = self.bottomRegisterTap {
+            pressed(true)
+        }
+    }
 }

@@ -8,8 +8,28 @@
 import UIKit
 import SnapKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, ButtonCustomCellDelegate {
     
+    func bottomRegister() {
+        let vc = RegisterVC()
+        print("ishladi buyam")
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
+    func bottomLogin() {
+        //
+    }
+    
+    func addAddressBtn() {
+        //
+    }
+    
+    func registerBtnTapped() {
+        //
+    }
+    
+   
     var mainView = UIView()
     var headerView = HeaderLogoView()
     var tableView = UITableView()
@@ -61,6 +81,12 @@ class LoginVC: UIViewController {
         }
     }
     
+    func loginBtnTapped() {
+        let vc = RegisterVC()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
 }
 
 extension LoginVC: UITableViewDataSource, UITableViewDelegate {
@@ -90,7 +116,7 @@ extension LoginVC: UITableViewDataSource, UITableViewDelegate {
             }
             
             cell.selectionStyle = .none
-            cell.backgroundColor = .red
+            cell.backgroundColor = .clear
             
             return cell
             
@@ -99,7 +125,10 @@ extension LoginVC: UITableViewDataSource, UITableViewDelegate {
             cell.initViews(frame: CGRect(x: 20, y: 0, width: windowWidth - 40, height: 80), type: .login)
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
-        
+            cell.delegate = self
+            cell.bottomRegisterTap = { press in
+                print("oxirgi harakat")
+            }
             return cell
             
         case 3:
@@ -115,6 +144,8 @@ extension LoginVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
     }
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 3 {
             return 140

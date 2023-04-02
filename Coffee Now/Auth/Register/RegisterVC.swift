@@ -7,7 +7,29 @@
 
 import UIKit
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, ButtonCustomCellDelegate {
+    func bottomRegister() {
+        print("boshqa oynadagi button")
+    }
+    
+    func bottomLogin() {
+        //
+    }
+    
+    func addAddressBtn() {
+        //
+    }
+    
+    func loginBtnTapped() {
+        //
+    }
+    
+    func registerBtnTapped() {
+        let vc = AddressSetupVC()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
 
     var mainView = UIView()
     var headerView = HeaderLogoView()
@@ -98,7 +120,7 @@ extension RegisterVC: UITableViewDelegate, UITableViewDataSource {
             cell.initViews(frame: CGRect(x: 20, y: 0, width: windowWidth - 40, height: 80), type: .register)
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
-            
+            cell.delegate = self    
             return cell
         default:
             let cell = UITableViewCell()

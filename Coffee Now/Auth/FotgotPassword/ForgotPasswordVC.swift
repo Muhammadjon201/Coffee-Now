@@ -81,13 +81,13 @@ extension ForgotPasswordVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditableTableViewCell", for: indexPath) as! EditableTableViewCell
             cell.initViews(frame: CGRect(x: 20, y: 0, width: windowWidth - 40, height: 80), type: .email)
-            cell.backgroundColor = .blue
+            cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCustomCell", for: indexPath) as! ButtonCustomCell
             cell.initViews(frame: CGRect(x: 20, y: 0 , width: windowWidth - 40, height: 80), type: .forgotPassword)
-            cell.backgroundColor = .green
+            cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
         default:

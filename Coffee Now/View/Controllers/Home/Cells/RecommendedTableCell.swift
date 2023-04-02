@@ -26,7 +26,6 @@ class RecommendedTableCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setCollection()
-        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -42,10 +41,6 @@ class RecommendedTableCell: UITableViewCell {
             make.top.equalTo(10)
             make.left.right.bottom.equalToSuperview()
         }
-    }
-    
-    func setConstraints(){
-        
     }
     
     var recommendedData = [

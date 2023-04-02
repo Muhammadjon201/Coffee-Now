@@ -7,7 +7,29 @@
 
 import UIKit
 
-class AddressSetupVC: UIViewController {
+class AddressSetupVC: UIViewController, ButtonCustomCellDelegate {
+    func bottomRegister() {
+        //
+    }
+    
+    func bottomLogin() {
+        //
+    }
+    
+    func loginBtnTapped() {
+        //
+    }
+    
+    func registerBtnTapped() {
+        //
+    }
+    
+    func addAddressBtn() {
+        let vc = TabbarController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
 
     var mainView = UIView()
     var headerView = HeaderLogoView()
@@ -94,6 +116,7 @@ extension AddressSetupVC: UITableViewDelegate, UITableViewDataSource {
             cell.initViews(frame: CGRect(x: 20, y: 0, width: windowWidth - 40, height: 80), type: .addressSetup)
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
+            cell.delegate = self
             return cell
         default:
             let cell = UITableViewCell()

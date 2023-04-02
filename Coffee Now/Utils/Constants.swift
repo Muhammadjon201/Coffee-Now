@@ -53,6 +53,15 @@ enum BtnType {
         case .forgotPassword: return ""
         }
     }
+    
+    var bottomRegisterBtn: String {
+        switch self {
+        case .login: return "Register"
+        case .register: return "Login"
+        case .addressSetup: return ""
+        case .forgotPassword: return ""
+        }
+    }
 }
 
 enum TextFieldInputType {

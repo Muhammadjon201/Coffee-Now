@@ -98,9 +98,10 @@ class HomeVC: UIViewController {
             make.top.equalTo(headerView.snp.bottom).offset(0)
             make.left.equalTo(20)
             make.right.equalTo(-20)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(0)
         }
     }
+
 }
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {

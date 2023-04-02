@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HomeCollectionDetailVC: UIViewController {
+class HomeCollectionDetailVC: UIViewController, InstructionTableViewCellDelegate {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -20,8 +20,11 @@ class HomeCollectionDetailVC: UIViewController {
         super.viewDidLoad()
         setUpElements()
         view.backgroundColor = .white
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .black
+        
     }
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -68,7 +71,13 @@ extension HomeCollectionDetailVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionTableViewCell", for: indexPath) as! InstructionTableViewCell
-
+            cell.delegate = self
+            cell.addBasketTap = { press in
+                print("add basket ishlb ketdi")
+                let vc = CheckoutViewController()
+                vc.countlabel = cell.countLabel
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             return cell
         default:
             let cell = UITableViewCell()
@@ -76,6 +85,14 @@ extension HomeCollectionDetailVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+    
+    //MARK: - Action Button Delegate
+    
+    func addBasketTapped() {
+         let vc = CheckoutViewController()
+         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
@@ -92,5 +109,4 @@ extension HomeCollectionDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 }

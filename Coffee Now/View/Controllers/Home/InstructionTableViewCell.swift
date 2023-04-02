@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import SnapKit
+
+protocol InstructionTableViewCellDelegate: AnyObject {
+    func addBasketTapped()
+}
 
 class InstructionTableViewCell: UITableViewCell {
+        
+    weak var delegate: InstructionTableViewCellDelegate?
+    
+    var addBasketTap: ((Bool) -> Void)?
+
     
     lazy var contentV: UIView = {
         let contentV = UIView()
@@ -52,10 +62,10 @@ class InstructionTableViewCell: UITableViewCell {
         minusButton.tintColor = .orange
         minusButton.backgroundColor = .white
         minusButton.layer.cornerRadius = 8
-        minusButton.layer.shadowColor = UIColor.black.cgColor // Set shadow color
-        minusButton.layer.shadowOpacity = 0.5 // Set shadow opacity
-        minusButton.layer.shadowOffset = CGSize(width: 0, height: 1) // Set shadow offset
-        minusButton.layer.shadowRadius = 4 // Set shadow radius
+        minusButton.layer.shadowColor = UIColor.black.cgColor
+        minusButton.layer.shadowOpacity = 0.5
+        minusButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        minusButton.layer.shadowRadius = 4
         minusButton.addTarget(self, action: #selector(minusTapped), for: .touchUpInside)
         return minusButton
     }()
@@ -66,10 +76,10 @@ class InstructionTableViewCell: UITableViewCell {
         plusButton.tintColor = .orange
         plusButton.backgroundColor = .white
         plusButton.layer.cornerRadius = 8
-        plusButton.layer.shadowColor = UIColor.black.cgColor // Set shadow color
-        plusButton.layer.shadowOpacity = 0.5 // Set shadow opacity
-        plusButton.layer.shadowOffset = CGSize(width: 0, height: 1) // Set shadow offset
-        plusButton.layer.shadowRadius = 4 // Set shadow radius
+        plusButton.layer.shadowColor = UIColor.black.cgColor
+        plusButton.layer.shadowOpacity = 0.5
+        plusButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        plusButton.layer.shadowRadius = 4 
         plusButton.addTarget(self, action: #selector(plusTapped), for: .touchUpInside)
         return plusButton
     }()
@@ -88,10 +98,12 @@ class InstructionTableViewCell: UITableViewCell {
         addBasketBtn.backgroundColor = .brown
         addBasketBtn.clipsToBounds = true
         addBasketBtn.layer.cornerRadius = 10
+        addBasketBtn.addTarget(self, action: #selector(addBasketTapped), for: .touchUpInside)
         return addBasketBtn
     }()
     
     // MARK: - Actions
+    var count = 1
     
     @objc func plusTapped(){
         count += 1
@@ -103,9 +115,15 @@ class InstructionTableViewCell: UITableViewCell {
             count -= 1
             countLabel.text = "\(count)"
         }
+        
     }
     
-    var count = 1
+    @objc func addBasketTapped(){
+        //delegate?.addBasketTapped()
+        if let pressed = self.addBasketTap {
+            pressed(true)
+        }
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -38,7 +38,7 @@ class SplashViewController: UIViewController {
     func timerSetup(){
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
             guard let self = self else { return }
-            let vc = TabbarController()
+            let vc = LoginVC()
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }

@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func callSplashViewController(){
-            let vc = HomeCollectionDetailVC()
+            let vc = SplashViewController()
             let nc = UINavigationController(rootViewController: vc)
             
             if self.window == nil{

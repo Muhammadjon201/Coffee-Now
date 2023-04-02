@@ -49,8 +49,8 @@ class LoginFooterViewCell: UITableViewCell {
         orLabel.numberOfLines = 1
         mainView.addSubview(orLabel)
         orLabel.snp.makeConstraints { make in
-            make.top.equalTo(40)
-            make.left.equalTo(leftLine.snp.right).offset(20)
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(leftLine)
         }
         
         rightLine.backgroundColor = .systemGray

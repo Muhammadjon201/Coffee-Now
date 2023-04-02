@@ -8,7 +8,7 @@
 import UIKit
 
 class RecommendedCollectionCell: UICollectionViewCell {
-    
+        
     lazy var contentV: UIView = {
         let contentV = UIView()
         contentV.clipsToBounds = true
@@ -49,9 +49,7 @@ class RecommendedCollectionCell: UICollectionViewCell {
         let basketIcon = UIImageView()
         return basketIcon
     }()
-    
-    //var didSelectImage: (() -> Void?)
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         initViews()
